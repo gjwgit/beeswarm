@@ -10,7 +10,7 @@ system("sudo apt-get install -y atril", ignore.stderr=TRUE, ignore.stdout=TRUE)
 
 # Identify the required packages.
 
-packages <- c("ggbeeswarm", "rattle")
+packages <- c("ggbeeswarm", "rattle", "randomForest", "magrittr", "ggplot2", "dplyr")
 
 # Determine which need to be installed.
 
