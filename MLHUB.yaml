@@ -8,9 +8,10 @@ meta:
   title        : Demonstrate the concept of bee swarm charts.
   display      : demo
   author       : Graham.Williams@togaware.com
+  url          : https://github.com/gjwgit/beeswarm
   filename     : pool/main/b/beeswarm/beeswarm_1.0.0.mlm
 dependencies :
-  cran: ggbeeswarm, rattle
+  cran: ggbeeswarm, rattle, randomForest
 commands:
   demo  : Step through examples of bee swarm plots.
   print : Display the code used for the demo.
