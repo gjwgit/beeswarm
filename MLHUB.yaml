@@ -1,12 +1,12 @@
 --- # BEE SWARM
 meta:
   name         : beeswarm
-  version      : 2.0.0
+  version      : 2.0.1
+  title        : Demonstrate the concept of bee swarm charts.
   keywords     : scatter plot, graphics, visualisation, plot
   languages    : R
-  license      : gpl3
-  title        : Demonstrate the concept of bee swarm charts.
   display      : demo
+  license      : gpl3
   author       : Graham.Williams@togaware.com
   url          : https://github.com/gjwgit/beeswarm
 dependencies :
