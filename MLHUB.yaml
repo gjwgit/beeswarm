@@ -10,7 +10,8 @@ meta:
   author       : Graham.Williams@togaware.com
   url          : https://github.com/gjwgit/beeswarm
 dependencies :
-  cran: ggbeeswarm, rattle, randomForest
+  cran  : ggbeeswarm, rattle, randomForest
+  files : demo.R, print.R, README.md
 commands:
   demo  : Step through examples of bee swarm plots.
   print : Display the code used for the demo.
