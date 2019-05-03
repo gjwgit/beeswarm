@@ -3,32 +3,28 @@
 #
 # Copyright 2018 Graham.Williams@togaware.com
 
+library(mlhub)
+
+mlcat("Introducing Bee Swarm Plots",
+      "The beeswarm package provides jittered scatter plots that avoid
+the typical overplotting of traditional scatter plots.
+
+The demonstration here is motivated by the examples published on
+github: https://github.com/eclarke/ggbeeswarm/blob/master/README.md")
+
 #-----------------------------------------------------------------------
 # Load required packages from local library into the R session.
 #-----------------------------------------------------------------------
 
 suppressMessages(
 {
-library(magrittr)     # Data pipelines: %>% %<>% %T>% equals().
-library(rattle)       # Support: normVarNames(), weatherAUS. 
-library(ggbeeswarm)   # 
-library(ggplot2)      # Visualise data.
-library(dplyr)        # Wrangling: sample_n()
-library(randomForest) # Missing data: na.roughfix().
+  library(magrittr)     # Data pipelines: %>% %<>% %T>% equals().
+  library(rattle)       # Support: normVarNames(), weatherAUS. 
+  library(ggbeeswarm)   # 
+  library(ggplot2)      # Visualise data.
+  library(dplyr)        # Wrangling: sample_n()
+  library(randomForest) # Missing data: na.roughfix().
 })
-
-cat("\n===========================",
-    "\nIntroducing Bee Swarm Plots",
-    "\n===========================\n\n")
-
-cat("The beeswarm package provides jittered scatter plots that avoid\n")
-cat("the typical overplotting of traditional scatter plots.\n\n")
-
-cat("The demonstration here is motivated by the examples published on\n")
-cat("github: https://github.com/eclarke/ggbeeswarm/blob/master/README.md\n\n")
-
-cat("Press the <Enter> key after each message to progress through each plot.\n")
-cat("Close the graphic window (Ctrl-W) to continue on to the next plot.\n\n")
 
 #-----------------------------------------------------------------------
 # Identify the data source and refence using template variables.
@@ -49,8 +45,16 @@ ds[vars] %<>% na.roughfix() # Removing missing values.
 # Start with a basic scatter plot.
 #-----------------------------------------------------------------------
 
-cat("We begin with a basic scatter plot of points that over-plots points: ")
-invisible(readChar("stdin", 1))
+mlask()
+mlcat("Basic Scatter Plot",
+    "A basic scatter plot displays points on the plot without regard for
+over-plotting of the points. Consequently if there are multiple observations
+with the same x and y values only one will be visible. A scatter plot adds a
+points geomtery to the canvas.
+
+  ds %>%
+    ggplot(aes(x=rain_tomorrow, y=humidity_3pm)) +
+    geom_point()")
 
 # Plot a basic jitter plot.
 
@@ -60,14 +64,18 @@ ds %>%
   ggplot(aes_string(x=xv, y=yv)) +
   geom_point()
 invisible(dev.off())
-system(sprintf("atril --preview %s", fname), ignore.stderr=TRUE, wait=FALSE)
+mlask()
+mlpreview(fname)
+mlask()
 
 #-----------------------------------------------------------------------
 # Compare that to a basic jitter plot
 #-----------------------------------------------------------------------
 
-cat("\nNow we use the jitter geometry to jitter the over-plotted points: ")
-invisible(readChar("stdin", 1))
+mlcat("Jitter the Points",
+      "The jitter geometry can be used in place of points to jitter the
+over-plotted points.")
+mlask()
 
 # Plot a basic jitter plot.
 
@@ -77,14 +85,16 @@ ds %>%
   ggplot(aes_string(x=xv, y=yv)) +
   geom_jitter()
 invisible(dev.off())
-system(sprintf("atril --preview %s", fname), ignore.stderr=TRUE, wait=FALSE)
+mlask()
+mlpreview(fname)
+mlask()
 
 #-----------------------------------------------------------------------
 # Compare it to a quasirandom layout
 #-----------------------------------------------------------------------
 
-cat("\nNext we can compare this to the more informative geom_quasirandom(): ")
-invisible(readChar("stdin", 1))
+mlcat("Quasi Random Points",
+      "Compare the jittered plot to the more informative geom_quasirandom()")
 
 fname <- "plot_jitter_quasirandom.pdf"
 pdf(file=fname, width=8)
@@ -92,14 +102,16 @@ ds %>%
   ggplot(aes_string(x=xv, y=yv)) +
   geom_quasirandom()
 invisible(dev.off())
-system(sprintf("atril --preview %s", fname), ignore.stderr=TRUE, wait=FALSE)
+mlask()
+mlpreview(fname)
+mlask()
 
 #-----------------------------------------------------------------------
 # Compare it to a deeswarm layout
 #-----------------------------------------------------------------------
 
-cat("\nNext we use geom_beeswarm(): ")
-invisible(readChar("stdin", 1))
+mlcat("Bee SwarmTITLE",
+      "Use geom_beeswarm()")
 
 fname <- "plot_jitter_beeswarm.pdf"
 pdf(file=fname, width=8)
@@ -107,14 +119,16 @@ ds %>%
   ggplot(aes_string(x=xv, y=yv)) +
   geom_beeswarm()
 invisible(dev.off())
-system(sprintf("atril --preview %s", fname), ignore.stderr=TRUE, wait=FALSE)
+mlask()
+mlpreview(fname)
+mlask()
 
 #-----------------------------------------------------------------------
 # A tukey plot.
 #-----------------------------------------------------------------------
 
-cat("\nUse Tukey's method for jittering: ")
-invisible(readChar("stdin", 1))
+mlcat("Tukey Jitters",
+      "Use Tukey's method for jittering.")
 
 fname <- "plot_quasirandom_tukey.pdf"
 pdf(file=fname, width=8)
@@ -122,14 +136,16 @@ ds %>%
   ggplot(aes_string(x=xv, y=yv)) +
   geom_quasirandom(method="tukey")
 invisible(dev.off())
-system(sprintf("atril --preview %s", fname), ignore.stderr=TRUE, wait=FALSE)
+mlask()
+mlpreview(fname)
+mlask()
 
 #-----------------------------------------------------------------------
 # A smiley plot.
 #-----------------------------------------------------------------------
 
-cat("\nHow about a smiley plot: ")
-invisible(readChar("stdin", 1))
+mlcat("Smiley",
+      "How about a smiley plot?")
 
 fname <- "plot_quasirandom_smiley.pdf"
 pdf(file=fname, width=8)
@@ -137,4 +153,6 @@ ds %>%
   ggplot(aes_string(x=xv, y=yv)) +
   geom_quasirandom(method="smiley")
 invisible(dev.off())
-system(sprintf("atril --preview %s", fname), ignore.stderr=TRUE, wait=FALSE)
+mlask()
+mlpreview(fname)
+mlask()
